@@ -1,34 +1,20 @@
-import { NextResponse, type NextRequest } from 'next/server'
-import { updateSession } from '@/lib/supabase/middleware'
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-export async function middleware(request: NextRequest) {
-  // 1. Refresh session
-  const { supabase, response } = await updateSession(request)
+const isProtectedRoute = createRouteMatcher([
+  '/dashboard(.*)',
+  '/train(.*)',
+  '/profile(.*)',
+  '/coach(.*)',
+  '/progress(.*)',
+  '/api/(.*)'
+]);
 
-  // 2. Get current user
-  const { data: { user } } = await supabase.auth.getUser()
-
-  const pathname = request.nextUrl.pathname
-
-  // 3. Define route types
-  const isAuthRoute = pathname.startsWith('/login') || pathname.startsWith('/signup')
-  const isPublicRoute = isAuthRoute || pathname === '/' || pathname.startsWith('/api/exercises')
-
-  // 4. Redirect unauthenticated users away from protected routes
-  if (!isPublicRoute && !user) {
-    return NextResponse.redirect(new URL('/login', request.url))
+export default clerkMiddleware((auth, req) => {
+  if (isProtectedRoute(req) && !req.nextUrl.pathname.startsWith('/api/chat')) {
+    auth().protect();
   }
-
-  // 5. Redirect authenticated users away from auth pages
-  if (isAuthRoute && user) {
-    return NextResponse.redirect(new URL('/dashboard', request.url))
-  }
-
-  return response
-}
+});
 
 export const config = {
-  matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
-  ],
-}
+  matcher: ['/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)'],
+};
