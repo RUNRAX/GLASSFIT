@@ -3,25 +3,46 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #0B0B10;
+  --foreground: #F5F5F7;
 }
 
 body {
+  background-color: var(--background);
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  /* Dark vertical gradient */
+  background: linear-gradient(180deg, #0B0B10 0%, #15151D 100%);
+  background-attachment: fixed;
 }
 
+/* Glass Surface Utilities */
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .glass-surface {
+    /* Base translucency */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+    
+    /* Strong refraction blur and contrast */
+    backdrop-filter: blur(24px) saturate(180%) contrast(110%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%) contrast(110%);
+    
+    /* Spherical edge lighting (refraction simulation at edges) */
+    box-shadow: 
+      inset 0 1px 1px rgba(255, 255, 255, 0.25),   /* Top light catch */
+      inset 0 -1px 2px rgba(0, 0, 0, 0.3),         /* Bottom shadow inside */
+      inset 1px 0 2px rgba(255, 255, 255, 0.1),    /* Side reflection */
+      0 8px 32px rgba(0, 0, 0, 0.3);               /* Outer drop shadow for lift */
+      
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
