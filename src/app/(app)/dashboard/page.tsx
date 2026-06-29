@@ -131,7 +131,7 @@ export default async function DashboardPage() {
         <div className="space-y-4 text-sm text-white/80">
           <p>
             Based on your goal to <strong className="text-white">{profile.primaryGoal.replace('_', ' ')}</strong> as a <strong className="text-white">{profile.experienceLevel}</strong>, 
-            I've assigned you the <strong className="text-accent-primary">{activeProg?.programName}</strong>. 
+            I&apos;ve assigned you the <strong className="text-accent-primary">{activeProg?.programName}</strong>. 
           </p>
           
           <div className="bg-white/5 p-3 rounded-lg border border-white/10">
@@ -141,7 +141,7 @@ export default async function DashboardPage() {
                 <li>Eat in a caloric deficit. Focus on high-volume, low-calorie foods to stay full.</li>
               )}
               {profile.primaryGoal === 'build_muscle' && (
-                <li>You need a caloric surplus. Don't skip meals, and eat carbs before training.</li>
+                <li>You need a caloric surplus. Don&apos;t skip meals, and eat carbs before training.</li>
               )}
               {profile.primaryGoal === 'recomposition' && (
                 <li>Eat at maintenance. Keep protein extremely high to build muscle while losing fat.</li>
