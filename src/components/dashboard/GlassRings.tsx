@@ -24,7 +24,7 @@ export function GlassRings({ volume, calories, streak }: GlassRingsProps) {
             size={280} 
             strokeWidth={16} 
             color="mint"
-            label="Volume (kg)"
+            showText={false}
           />
         </div>
 
@@ -36,7 +36,7 @@ export function GlassRings({ volume, calories, streak }: GlassRingsProps) {
             size={200} 
             strokeWidth={16} 
             color="coral" 
-            label="kcal"
+            showText={false}
           />
         </div>
 
@@ -48,8 +48,24 @@ export function GlassRings({ volume, calories, streak }: GlassRingsProps) {
             size={120} 
             strokeWidth={16} 
             color="amber"
-            label="Day Streak"
+            showText={false}
           />
+        </div>
+        
+        {/* Centralized Text Display to prevent overlap */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none gap-1">
+          <div className="text-center">
+            <span className="font-mono font-bold text-lg text-mint">{Math.round(volume)}</span>
+            <span className="text-[9px] text-text-secondary uppercase ml-1 block leading-none">Vol</span>
+          </div>
+          <div className="text-center">
+            <span className="font-mono font-bold text-lg text-coral">{Math.round(calories)}</span>
+            <span className="text-[9px] text-text-secondary uppercase ml-1 block leading-none">kCal</span>
+          </div>
+          <div className="text-center">
+            <span className="font-mono font-bold text-lg text-amber">{streak}</span>
+            <span className="text-[9px] text-text-secondary uppercase ml-1 block leading-none">Days</span>
+          </div>
         </div>
       </div>
     </div>

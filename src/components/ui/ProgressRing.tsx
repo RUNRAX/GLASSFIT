@@ -10,6 +10,7 @@ interface ProgressRingProps {
   color?: 'mint' | 'coral' | 'amber'
   strokeWidth?: number
   label?: string
+  showText?: boolean
 }
 
 const COLORS = {
@@ -24,7 +25,8 @@ export function ProgressRing({
   size = 120, 
   color = 'mint',
   strokeWidth = 12,
-  label
+  label,
+  showText = true
 }: ProgressRingProps) {
   
   const radius = (size - strokeWidth) / 2
@@ -90,12 +92,14 @@ export function ProgressRing({
       </svg>
       
       {/* Center Label */}
-      <div className="absolute flex flex-col items-center justify-center text-center">
-        <span className="font-mono font-bold text-2xl" style={{ color: hexColor }}>
-          {value}
-        </span>
-        {label && <span className="text-[10px] text-text-secondary uppercase tracking-wider">{label}</span>}
-      </div>
+      {showText && (
+        <div className="absolute flex flex-col items-center justify-center text-center">
+          <span className="font-mono font-bold text-2xl" style={{ color: hexColor }}>
+            {Math.round(value)}
+          </span>
+          {label && <span className="text-[10px] text-text-secondary uppercase tracking-wider">{label}</span>}
+        </div>
+      )}
     </div>
   )
 }
