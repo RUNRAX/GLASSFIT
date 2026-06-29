@@ -40,10 +40,8 @@ export async function POST(request: Request) {
     // Match Program
     const matchedTemplate = matchProgram(primary_goal, experience_level, equipment)
 
-    // Transaction for onboarding
-    await db.transaction(async (tx) => {
       // 1. Save Profile
-      await tx.insert(profiles).values({
+      await db.insert(profiles).values({
         id: userId,
         sex,
         dateOfBirth: date_of_birth,
@@ -70,7 +68,7 @@ export async function POST(request: Request) {
       })
 
       // 2. Save Nutrition Targets
-      await tx.insert(nutritionTargets).values({
+      await db.insert(nutritionTargets).values({
         userId,
         bmr: bmr.toString(),
         tdee: tdee.toString(),
@@ -81,7 +79,7 @@ export async function POST(request: Request) {
       })
 
       // 3. Create Program
-      const [prog] = await tx.insert(programs).values({
+      const [prog] = await db.insert(programs).values({
         ownerId: userId,
         name: matchedTemplate.name,
         description: matchedTemplate.description,
@@ -92,7 +90,7 @@ export async function POST(request: Request) {
 
       // Create Days & Exercises
       for (const day of matchedTemplate.days) {
-        const [d] = await tx.insert(programDays).values({
+        const [d] = await db.insert(programDays).values({
           programId: prog.id,
           dayNumber: day.day_number,
           focus: day.focus
@@ -107,17 +105,16 @@ export async function POST(request: Request) {
             restSeconds: ex.rest_seconds,
             sortOrder: idx
           }))
-          await tx.insert(programExercises).values(exToInsert)
+          await db.insert(programExercises).values(exToInsert)
         }
       }
 
       // Link User Program
-      await tx.insert(userPrograms).values({
+      await db.insert(userPrograms).values({
         userId,
         programId: prog.id,
         active: true
       })
-    })
 
     return NextResponse.json({ success: true })
 
