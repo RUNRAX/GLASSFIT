@@ -8,6 +8,8 @@ export default function LoginPage() {
           path="/login"
           routing="path"
           signUpUrl="/signup"
+          fallbackRedirectUrl="/dashboard"
+          forceRedirectUrl="/dashboard"
           appearance={{
             elements: {
               card: "bg-white/5 border border-white/10 backdrop-blur-xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] rounded-3xl",
