@@ -36,7 +36,7 @@ export const PROGRAM_TEMPLATES: ProgramTemplate[] = [
         exercises: [
           { exercise_id: "Pushups", sets: 3, reps: "8-12", rest_seconds: 90 },
           { exercise_id: "Bodyweight_Squat", sets: 3, reps: "15", rest_seconds: 90 },
-          { exercise_id: "Crunch", sets: 3, reps: "15-20", rest_seconds: 60 }
+          { exercise_id: "Crunches", sets: 3, reps: "15-20", rest_seconds: 60 }
         ]
       },
       {
@@ -49,7 +49,7 @@ export const PROGRAM_TEMPLATES: ProgramTemplate[] = [
         focus: "Full Body",
         exercises: [
           { exercise_id: "Pushups", sets: 3, reps: "8-12", rest_seconds: 90 },
-          { exercise_id: "Lunges", sets: 3, reps: "10/leg", rest_seconds: 90 },
+          { exercise_id: "Bodyweight_Walking_Lunge", sets: 3, reps: "10/leg", rest_seconds: 90 },
           { exercise_id: "Plank", sets: 3, reps: "30s", rest_seconds: 60 }
         ]
       }
@@ -78,7 +78,7 @@ export const PROGRAM_TEMPLATES: ProgramTemplate[] = [
         exercises: [
           { exercise_id: "Goblet_Squat", sets: 3, reps: "10-15", rest_seconds: 90 },
           { exercise_id: "Dumbbell_Lunges", sets: 3, reps: "10/leg", rest_seconds: 90 },
-          { exercise_id: "Dumbbell_Calf_Raises", sets: 3, reps: "15-20", rest_seconds: 60 }
+          { exercise_id: "Standing_Dumbbell_Calf_Raise", sets: 3, reps: "15-20", rest_seconds: 60 }
         ]
       }
     ]
@@ -104,7 +104,7 @@ export const PROGRAM_TEMPLATES: ProgramTemplate[] = [
         day_number: 2,
         focus: "Pull",
         exercises: [
-          { exercise_id: "Lat_Pulldown", sets: 4, reps: "8-12", rest_seconds: 90 },
+          { exercise_id: "Wide-Grip_Lat_Pulldown", sets: 4, reps: "8-12", rest_seconds: 90 },
           { exercise_id: "Bent_Over_Barbell_Row", sets: 3, reps: "8-10", rest_seconds: 120 },
           { exercise_id: "Barbell_Curl", sets: 3, reps: "10-12", rest_seconds: 60 }
         ]
