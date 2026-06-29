@@ -87,6 +87,23 @@ export default function CoachPage() {
             <div className="text-center text-text-secondary mt-10">
               <Bot size={48} className="mx-auto mb-4 opacity-50" />
               <p>Ask me anything about your training, form, or nutrition.</p>
+              
+              <div className="flex flex-wrap justify-center gap-2 mt-8">
+                {[
+                  "Can you build me a 4-day split?",
+                  "Is my protein target enough?",
+                  "How to fix lower back pain on squats?",
+                  "What's a good pre-workout meal?"
+                ].map((suggestion) => (
+                  <button
+                    key={suggestion}
+                    onClick={() => setInput(suggestion)}
+                    className="bg-white/5 border border-white/10 rounded-full px-4 py-2 text-sm text-white/80 hover:bg-white/10 hover:text-white transition-all backdrop-blur-md"
+                  >
+                    {suggestion}
+                  </button>
+                ))}
+              </div>
             </div>
           )}
 

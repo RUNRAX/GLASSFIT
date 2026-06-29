@@ -11,29 +11,32 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   min-height: 100vh;
-  /* Dark vertical gradient */
-  background: linear-gradient(180deg, #0B0B10 0%, #15151D 100%);
+  background: url('/bg-3d.png') no-repeat center center;
+  background-size: cover;
   background-attachment: fixed;
 }
 
 /* Glass Surface Utilities */
 @layer utilities {
   .glass-surface {
-    /* Base translucency */
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+    /* Slightly more opaque base to catch light */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
     
-    /* Strong refraction blur and contrast */
-    backdrop-filter: blur(24px) saturate(180%) contrast(110%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%) contrast(110%);
+    /* Reduced blur for clarity, increased saturation and brightness for refraction */
+    backdrop-filter: blur(12px) saturate(220%) brightness(115%) contrast(110%);
+    -webkit-backdrop-filter: blur(12px) saturate(220%) brightness(115%) contrast(110%);
     
-    /* Spherical edge lighting (refraction simulation at edges) */
+    /* Spherical prism effect: strong white highlight on top, chromatic aberration on sides/bottom */
     box-shadow: 
-      inset 0 1px 1px rgba(255, 255, 255, 0.25),   /* Top light catch */
-      inset 0 -1px 2px rgba(0, 0, 0, 0.3),         /* Bottom shadow inside */
-      inset 1px 0 2px rgba(255, 255, 255, 0.1),    /* Side reflection */
-      0 8px 32px rgba(0, 0, 0, 0.3);               /* Outer drop shadow for lift */
+      inset 0 2px 3px rgba(255, 255, 255, 0.4),   /* Intense top specular highlight */
+      inset 2px 0 4px rgba(0, 255, 255, 0.2),     /* Cyan refraction left */
+      inset -2px 0 4px rgba(255, 0, 255, 0.2),    /* Purple refraction right */
+      inset 0 -2px 5px rgba(0, 0, 0, 0.3),        /* Bottom shadow inside */
+      0 12px 40px rgba(0, 0, 0, 0.5);             /* Outer drop shadow */
       
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom-color: rgba(255, 255, 255, 0.05); /* Fade out border at bottom */
+    border-right-color: rgba(255, 255, 255, 0.05);
   }
 }
 

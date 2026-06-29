@@ -12,7 +12,7 @@ export default function AppLayout({
       <AnimatedBlobs />
       
       {/* Top safe area / Glass header area if needed */}
-      <header className="sticky top-0 z-30 w-full h-16 pt-safe backdrop-blur-md bg-base-dark/20 border-b border-white/5 flex items-center justify-center">
+      <header className="sticky top-4 z-30 mx-4 h-14 pt-safe glass-surface rounded-full flex items-center justify-center">
         <h1 className="font-display font-bold text-lg tracking-wide text-white/90">
           GlassFit
         </h1>
