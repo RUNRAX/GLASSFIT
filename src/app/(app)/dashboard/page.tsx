@@ -130,20 +130,20 @@ export default async function DashboardPage() {
         
         <div className="space-y-4 text-sm text-white/80">
           <p>
-            Based on your goal to <strong className="text-white">{profile.primaryGoal.replace('_', ' ')}</strong> as a <strong className="text-white">{profile.experienceLevel}</strong>, 
-            I&apos;ve assigned you the <strong className="text-accent-primary">{activeProg?.programName}</strong>. 
+            Based on your goal to <strong className="text-white">{(profile?.primaryGoal || 'improve fitness').replace('_', ' ')}</strong> as a <strong className="text-white">{profile?.experienceLevel || 'beginner'}</strong>, 
+            I&apos;ve assigned you the <strong className="text-accent-primary">{activeProg?.programName || 'Starter Program'}</strong>. 
           </p>
           
           <div className="bg-white/5 p-3 rounded-lg border border-white/10">
-            <h4 className="font-bold text-white mb-2">🍽️ Diet Strategy ({profile.dietaryPreference})</h4>
+            <h4 className="font-bold text-white mb-2">🍽️ Diet Strategy ({profile?.dietaryPreference || 'Any'})</h4>
             <ul className="list-disc pl-4 space-y-1">
-              {profile.primaryGoal === 'lose_fat' && (
+              {profile?.primaryGoal === 'lose_fat' && (
                 <li>Eat in a caloric deficit. Focus on high-volume, low-calorie foods to stay full.</li>
               )}
-              {profile.primaryGoal === 'build_muscle' && (
+              {profile?.primaryGoal === 'build_muscle' && (
                 <li>You need a caloric surplus. Don&apos;t skip meals, and eat carbs before training.</li>
               )}
-              {profile.primaryGoal === 'recomposition' && (
+              {profile?.primaryGoal === 'recomposition' && (
                 <li>Eat at maintenance. Keep protein extremely high to build muscle while losing fat.</li>
               )}
               <li>Hit your {Math.round(Number(nutrition?.proteinG || 0))}g of protein to maximize recovery.</li>
@@ -156,7 +156,7 @@ export default async function DashboardPage() {
             <ul className="list-disc pl-4 space-y-1">
               <li><strong>Morning:</strong> Hydrate immediately (500ml water). Light stretching.</li>
               <li><strong>Training:</strong> Do your <em>{nextDay?.focus || 'Workout'}</em> session when you have the most energy.</li>
-              <li><strong>Recovery:</strong> Aim for 7-8 hours of sleep. Your activity level is {profile.activityLevel.replace('_', ' ')}, so adjust rest accordingly.</li>
+              <li><strong>Recovery:</strong> Aim for 7-8 hours of sleep. Your activity level is {(profile?.activityLevel || 'sedentary').replace('_', ' ')}, so adjust rest accordingly.</li>
             </ul>
           </div>
         </div>
